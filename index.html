@@ -63,114 +63,119 @@
             </div>
         </div>
     </div>
+<script> //inicia o script do código
 
-    <script>
-        // Função para alterar a imagem de perfil
-        function alterarImagem() {
-            const novaImagemUrl = prompt("Digite a URL da nova imagem:");
-            if (novaImagemUrl) {
-                document.getElementById("profileImage").src = novaImagemUrl;
-            }
-        }
+// Função para alterar a imagem de perfil
+function alterarImagem() { 
+    const novaImagemUrl = prompt("Digite a URL da nova imagem:"); 
+    // Cria uma constante 'novaImagemUrl' e solicita ao usuário que insira uma URL de uma nova imagem usando a função prompt
+    if (novaImagemUrl) { 
+        document.getElementById("profileImage").src = novaImagemUrl; 
+        // Se o usuário forneceu uma URL, altera o atributo 'src' da imagem com id 'profileImage' para a nova URL
+    } 
+} 
+  // função para trocar a imagem de perfil ao passar o mouse
+function trocarImagem(novaImagemUrl) { 
+    document.getElementById("profileImage").src = novaImagemUrl; 
+    // Altera a imagem de perfil para a URL fornecida quando o mouse passa sobre a imagem
+} 
+function restaurarImagem(imagemOriginal) { 
+    document.getElementById("profileImage").src = imagemOriginal; 
+    // Restaura a imagem original quando o mouse sai da imagem de perfil
+} 
+// função para alterar o nome
+function alterarNome() { 
+    const novoNome = prompt("Digite o novo nome:"); 
+    // Solicita ao usuário um novo nome para o perfil
+    if (novoNome) { 
+        document.getElementById("profileName").textContent = "Nome: " + novoNome; 
+        // Se o usuário fornecer um nome, o texto do elemento com id 'profileName' será alterado
+    } 
+} 
+// função para mostrar o seletor de idade
+function mostrarSelecaoIdade() { 
+    const seletor = document.getElementById("seletorIdade"); 
+    seletor.style.display = "block"; 
+    // Torna visível o seletor de idade
+    const idadeSelect = document.getElementById("idadeSelect"); 
+    idadeSelect.innerHTML = ""; 
+    // Limpa as opções anteriores no seletor de idade
+    for (let i = 1; i <= 100; i++) { 
+        const option = document.createElement("option"); 
+        option.value = i; 
+        option.textContent = i; 
+        idadeSelect.appendChild(option); 
+        // Cria as opções de 1 a 100 e as adiciona ao seletor
+    } 
+} 
+// função para alterar a idade com a seleção do usuário
+function alterarIdade() { 
+    const idadeSelect = document.getElementById("idadeSelect"); 
+    // Obtém o seletor de idade
+    const novaIdade = idadeSelect.value; 
+    // Armazena a idade selecionada
+    if (novaIdade) { 
+        document.getElementById("profileAge").textContent = "Idade: " + novaIdade; 
+        // Se uma idade for selecionada, altera o texto de 'profileAge' para a nova idade
+    } 
+    document.getElementById("seletorIdade").style.display = "none"; 
+    // Oculta o seletor de idade após a seleção
+} 
+// função para adicionar um hobby
+function adicionarHobby() { 
+    const novoHobby = prompt("Digite um novo hobby:"); 
+    // Solicita ao usuário que insira um novo hobby
+    if (novoHobby) { 
+        const li = document.createElement("li"); 
+        li.className = "list-group-item"; 
+        li.textContent = novoHobby; 
+        // Cria um novo item de lista (<li>) com o hobby fornecido
+        const removeButton = document.createElement("button"); 
+        removeButton.className = "btn btn-danger btn-sm float-end"; 
+        removeButton.textContent = "Remover"; 
+        removeButton.onclick = function() { 
+            removerHobby(removeButton); 
+            // Define que ao clicar no botão "Remover", o hobby será removido
+        }; 
+        li.appendChild(removeButton); 
+        document.getElementById("hobbiesList").appendChild(li); 
+        // Adiciona o item de hobby à lista de hobbies
+    } 
+} 
+// Função para remover um hobby
+function removerHobby(button) { 
+    const hobbyItem = button.parentElement; 
+    hobbyItem.remove(); 
+    // Remove o item de hobby correspondente ao botão clicado
+} 
+// Função para mudar a cor de fundo do card
+function mudarCorDeFundo() { 
+    const cores = ["#f8d7da", "#d1ecf1", "#d4edda", "#ffb3cd", "#cce5ff"]; 
+    // cores predefinidas
+    const corAleatoria = cores[Math.floor(Math.random() * cores.length)]; 
+    // Escolhe uma cor aleatória 
+    document.getElementById("profileCard").style.backgroundColor = corAleatoria; 
+    // Aplica a cor aleatória ao fundo do card com id 'profileCard'
+} 
+// Função para resetar o perfil
+function resetarPerfil() { 
+    // Restaurar nome, idade e imagem
+    document.getElementById("profileName").textContent = "Nome: Meu Perfil"; 
+    document.getElementById("profileAge").textContent = "Idade: 18"; 
+    document.getElementById("profileImage").src = "https://dashboard.rtta.rw/public/assets/img/avatar.png"; 
+    // Restaura os valores padrão para o nome, idade e imagem
 
-        // Função para trocar a imagem de perfil ao passar o mouse
-        function trocarImagem(novaImagemUrl) {
-            document.getElementById("profileImage").src = novaImagemUrl;
-        }
+    const hobbiesList = document.getElementById("hobbiesList"); 
+    hobbiesList.innerHTML = ""; 
+    // Limpa todos os hobbies da lista
 
-        // Função para restaurar a imagem original quando o mouse sair
-        function restaurarImagem(imagemOriginal) {
-            document.getElementById("profileImage").src = imagemOriginal;
-        }
+    document.getElementById("profileCard").style.backgroundColor = ""; 
+    // Restaura a cor original de fundo do card
 
-        // Função para alterar o nome
-        function alterarNome() {
-            const novoNome = prompt("Digite o novo nome:");
-            if (novoNome) {
-                document.getElementById("profileName").textContent = "Nome: " + novoNome;
-            }
-        }
-
-        // Função para mostrar o seletor de idade
-        function mostrarSelecaoIdade() {
-            const seletor = document.getElementById("seletorIdade");
-            seletor.style.display = "block"; // Exibe o seletor
-
-            // Preenche o seletor com as opções de 1 a 100
-            const idadeSelect = document.getElementById("idadeSelect");
-            idadeSelect.innerHTML = ""; // Limpa as opções anteriores
-            for (let i = 1; i <= 100; i++) {
-                const option = document.createElement("option");
-                option.value = i;
-                option.textContent = i;
-                idadeSelect.appendChild(option);
-            }
-        }
-
-        // Função para alterar a idade com a seleção do usuário
-        function alterarIdade() {
-            const idadeSelect = document.getElementById("idadeSelect");
-            const novaIdade = idadeSelect.value;
-
-            if (novaIdade) {
-                document.getElementById("profileAge").textContent = "Idade: " + novaIdade;
-            }
-
-            // Oculta o seletor após a alteração
-            document.getElementById("seletorIdade").style.display = "none";
-        }
-
-        // Função para adicionar um hobby
-        function adicionarHobby() {
-            const novoHobby = prompt("Digite um novo hobby:");
-            if (novoHobby) {
-                const li = document.createElement("li");
-                li.className = "list-group-item";
-                li.textContent = novoHobby;
-                
-                // Adiciona o botão de remover
-                const removeButton = document.createElement("button");
-                removeButton.className = "btn btn-danger btn-sm float-end";
-                removeButton.textContent = "Remover";
-                removeButton.onclick = function() {
-                    removerHobby(removeButton);
-                };
-                
-                li.appendChild(removeButton);
-                document.getElementById("hobbiesList").appendChild(li);
-            }
-        }
-
-        // Função para remover um hobby
-        function removerHobby(button) {
-            const hobbyItem = button.parentElement;
-            hobbyItem.remove();
-        }
-
-        // Função para mudar a cor de fundo do card
-        function mudarCorDeFundo() {
-            const cores = ["#f8d7da", "#d1ecf1", "#d4edda", "#ffb3cd", "#cce5ff"];
-            const corAleatoria = cores[Math.floor(Math.random() * cores.length)];
-            document.getElementById("profileCard").style.backgroundColor = corAleatoria;
-        }
-
-        // Função para resetar o perfil
-        function resetarPerfil() {
-            // Restaurar nome, idade e imagem
-            document.getElementById("profileName").textContent = "Nome: Meu Perfil";
-            document.getElementById("profileAge").textContent = "Idade: 18";
-            document.getElementById("profileImage").src = "https://dashboard.rtta.rw/public/assets/img/avatar.png";
-
-            // Limpar hobbies
-            const hobbiesList = document.getElementById("hobbiesList");
-            hobbiesList.innerHTML = ""; // Limpa todos os hobbies
-
-            // Restaurar cor de fundo
-            document.getElementById("profileCard").style.backgroundColor = "";
-
-            // Fechar o seletor de idade, se estiver visível
-            document.getElementById("seletorIdade").style.display = "none";
-        }
-    </script>
+    document.getElementById("seletorIdade").style.display = "none"; 
+    // Fecha o seletor de idade, se estiver visível
+} 
+//fecha o script
+</script>    
 </body>
 </html>
